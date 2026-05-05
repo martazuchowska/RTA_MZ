@@ -11,8 +11,8 @@ sklepy = ['Warszawa', 'Kraków', 'Gdańsk', 'Wrocław']
 kategorie = ['elektronika', 'odzież', 'żywność', 'książki']
 
 def generate_transaction():
-    if random.random() < 0.05: # 5% szansy na fraud[cite: 1]
-        # Podejrzana transakcja[cite: 1]
+    if random.random() < 0.05: # 5% szansy na fraud
+        # Podejrzana transakcja
         return {
             'tx_id': f'TX{random.randint(1000,9999)}',
             'user_id': f'u{random.randint(1,20):02d}',
@@ -23,7 +23,7 @@ def generate_transaction():
             'timestamp': datetime.now().isoformat(),
         }
     else:
-        # Normalna transakcja[cite: 1]
+        # Normalna transakcja
         return {
             'tx_id': f'TX{random.randint(1000,9999)}',
             'user_id': f'u{random.randint(1,20):02d}',
@@ -37,7 +37,7 @@ def generate_transaction():
 for i in range(1000):
     tx = generate_transaction()
     producer.send('transactions', value=tx)
-    # Dodałem tu kategorię i godzinę do printa, żebyśmy widzieli te fraudy gołym okiem!
+    # godzina do print
     print(f"[{i+1}] {tx['tx_id']} | {tx['amount']:.2f} PLN | Kat: {tx['category']:11} | Godzina: {tx['hour']:02d}")
     time.sleep(0.5)
 
