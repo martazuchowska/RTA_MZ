@@ -23,12 +23,12 @@ for message in consumer:
     # 1. Zwiększamy licznik transakcji dla danego sklepu
     store_counts[store] += 1
     
-    # 2. Dodajemy kwotę transakcji do sumy danego sklepu[cite: 1]
+    # 2. Dodajemy kwotę transakcji do sumy danego sklepu
     total_amount[store] += tx['amount']
     
     msg_count += 1
     
-    # 3. Co 10 wiadomości: wyświetlamy tabelę podsumowującą[cite: 1]
+    # 3. Co 10 wiadomości: wyświetlamy tabelę podsumowującą
     if msg_count % 10 == 0:
         print(f"\n{'='*52}")
         print(f"{'Sklep':<12} {'Liczba':>8} {'Suma':>12} {'Śr.':>10}")
