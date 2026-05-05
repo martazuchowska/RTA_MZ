@@ -10,7 +10,7 @@ consumer = KafkaConsumer(
 )
 
 def get_risk_level(amount):
-    # Logika z zadania: przypisanie poziomu ryzyka na podstawie kwoty
+    #przypisanie poziomu ryzyka na podstawie kwoty
     if amount > 3000:
         return 'HIGH'
     if amount > 1000:
@@ -24,5 +24,5 @@ for message in consumer:
     # Dodanie nowego pola 'risk_level' do słownika transakcji
     tx['risk_level'] = get_risk_level(tx['amount'])
     
-    # Wyświetlenie wyniku z ładnym formatowaniem
+    # Wyświetlenie wyniku
     print(f"[{tx['risk_level']:6s}] {tx['tx_id']} | {tx['amount']:.2f} PLN")
