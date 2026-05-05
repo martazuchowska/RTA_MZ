@@ -15,7 +15,7 @@ alert_producer = KafkaProducer(
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
-# Nasza funkcja scoringowa z zadania 4.1[cite: 1]
+# Funkcja scoringowa 
 def score_transaction(tx):
     score = 0
     rules = []
@@ -33,13 +33,13 @@ def score_transaction(tx):
 
 print("Konsument scoringowy uruchomiony...\n")
 
-# ROZWIĄZANIE: TWÓJ KOD[cite: 1]
+# Rozwiazanie
 for message in consumer:
     tx = message.value
     # 1. Scoruj
     score, rules = score_transaction(tx)
     
-    # 2. Jeśli >= 3: wyślij do 'alerts' i wypisz ALERT[cite: 1]
+    # 2. Jeśli >= 3: wyślij do 'alerts' i wypisz ALERT
     if score >= 3:
         alert = {**tx, 'score': score, 'rules': rules, 'alert': True}
         alert_producer.send('alerts', value=alert)
